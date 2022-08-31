@@ -1,4 +1,4 @@
-# Slide Application 
+# Introduction to Progressive Web Applications with Angular 
 
 An app I use when giving talks and want to show slide like content but not use slides!
 
