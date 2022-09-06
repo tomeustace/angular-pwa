@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "measuring-app-performance": {
+    "angular-pwa": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/measuring-app-performance",
+            "outputPath": "dist/angular-pwa",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "measuring-app-performance:build"
+            "browserTarget": "angular-pwa:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "measuring-app-performance:build:production"
+              "browserTarget": "angular-pwa:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "measuring-app-performance:build"
+            "browserTarget": "angular-pwa:build"
           }
         },
         "test": {
@@ -114,16 +114,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "measuring-app-performance:serve"
+            "devServerTarget": "angular-pwa:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "measuring-app-performance:serve:production"
+              "devServerTarget": "angular-pwa:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "measuring-app-performance"
+  "defaultProject": "angular-pwa"
 }
