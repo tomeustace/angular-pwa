@@ -2,6 +2,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { Routes, RouterModule, Resolve } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { AddPWAComponent } from './add-pwa/add-pwa.component';
 
 import { delay } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
@@ -22,6 +23,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboard', component: DashboardComponent,
+  },
+  {
+    path: 'add-pwa', component: AddPWAComponent,
   },
   {
     path: 'resources', component: ResourcesComponent

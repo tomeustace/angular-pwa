@@ -21,6 +21,7 @@ import { ResourcesComponent } from './resources/resources.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AddPWAComponent } from './add-pwa/add-pwa.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { environment } from '../environments/environment';
     NavigationComponent,
     DashboardComponent,
     ResourcesComponent,
+    AddPWAComponent,
   ],
   imports: [
     BrowserModule,

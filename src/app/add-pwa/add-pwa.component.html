@@ -1,0 +1,119 @@
+<div class="grid-container">
+  <mat-grid-list cols="3" rowHeight="390px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-content>
+          <mat-card-header>
+            <mat-card-title>
+              ‍ Add PWA via CLI️
+            </mat-card-title>
+          </mat-card-header>
+          <p>Run command: <i>ng add @angular/pwa</i></p>
+	  <ul>
+		<li>Creates web manifest file</li>
+		<li>Creates ngsw-config.json (ServiceWorker config)</li>
+		<li>Creates icon files</li>
+		<li>Updates angular.json to reference ngsw-config.json, set ServiceWorker true</li>
+		<li>Updates index.html to link webmanifest and include theme color</li>
+		<li>Updates app.module.ts to register ServiceWorker script ngsw-worker.js (generated)</li>
+	  </ul>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              ServiceWorker Config - assetGroups
+            </mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+		<p>assetGroups defines what files get cached by the ServiceWorker.</p>
+		<pre><code class="language-js">{{ '{' }}
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {{ '{' }}
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {{ '{' }}
+        "files": [ "/favicon.ico", "/index.html", "/manifest.webmanifest", "/*.css", "/*.js" ]
+      }
+    },
+    {{ '{' }}
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {{ '{' }}
+        "files": [
+          "/assets/**",
+          "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+        ]
+      {{ '}' }}
+  {{ '}' }}
+  ]
+{{ '}' }}</code></pre>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              ServiceWorker Config - dataGroups
+            </mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+		<p>dataGroups defines policies for how API requests are cached.</p>
+		<pre><code class="language-js">{{ '{' }}
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "dataGroups": [
+    {{ '{' }}
+      "name": "users",
+      "urls": [ "/api/users/**" ],
+      "cacheConfig": {{ '{' }}
+        "strategy": "performance", "maxSize": 100, "maxAge": "5m"
+      {{ '}' }}
+    {{ '}' }},
+    {{ '{' }}
+      "name": "products",
+      "urls": [ "/api/products/**" ],
+      "cacheConfig": {{ '{' }}
+        "strategy": "freshness", "maxSize": 50, "maxAge": "15s"
+      {{ '}' }}
+    {{ '}' }}
+  ]
+{{ '}' }}</code></pre>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-content>
+          <mat-card-header>
+            <mat-card-title>
+              Web Manifest 
+            </mat-card-title>
+          </mat-card-header>
+	  <p>The manifest file lets the browser know how the web application should behave when installed by a user.</p>
+		<pre><code class="language-js">{{ '{' }}
+  "name": "angular-pwa",
+  "short_name": "angular-pwa",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [...]
+{{ '}' }}</code></pre>	
+            <p>
+            </p>
+            <p>
+            </p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
