@@ -1,0 +1,54 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="180px">
+    <mat-grid-tile [colspan]="1" [rowspan]="5">
+      <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+		Notification Permissions
+            </mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+		<p>User must allow push notifications when prompted by their browser</p>
+		<pre><code class="language-js">ngOnInit() {{ '{' }}
+	this.initSubscription();
+{{ '}' }}
+
+initSubscription() {{ '{' }}
+    console.log(Notification.permission);
+    if(Notification.permission === 'default') {{ '{' }}
+      Notification.requestPermission().then(() => {{ '{' }}
+        this.requestSubscription();
+      {{ '}' }}).catch(() => {{ '{' }}
+        // show permission denied error
+      });
+    } else if(Notification.permission === 'denied') {{ '{' }}
+      // show permission is denied, please allow it error
+    } else {{ '{' }}
+      this.requestSubscription();
+    }
+}
+
+async requestSubscription() {{ '{' }}
+	try {{ '{' }}
+		const sub = await this.swPush.requestSubscription({{ '{' }} {{ '}' }});
+	{{ '}' }} catch (err) {{ '{' }}
+		console.error(e);
+	{{ '}' }} 
+{{ '}' }}
+</code></pre>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="5">
+      <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+            </mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+

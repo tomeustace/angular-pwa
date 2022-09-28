@@ -1,0 +1,77 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="180px">
+    <mat-grid-tile [colspan]="1" [rowspan]="5">
+      <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              ServiceWorker Config - assetGroups define what gets cached by the ServiceWorker
+            </mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+		<h3>installMode</h3>
+		<p><i>prefetch - Tells the Angular service worker to fetch every single listed resource while it's caching the current version of the application. This is bandwidth-intensive but ensures resources are available whenever they're requested, even if the browser is currently offline.</i></p>
+		<p><i>lazy - Does not cache any of the resources up front. Instead, the Angular service worker only caches resources for which it receives requests. This is an on-demand caching mode. Resources that are never requested are not cached. This is useful for things like images at different resolutions, so the service worker only caches the correct assets for the particular screen and orientation.</i></p>
+		<h3>updateMode</h3>
+		<p><i>prefetch - Tells the service worker to download and cache the changed resources immediately.</i></p>
+		<p><i>lazy - Tells the service worker to not cache those resources. Instead, it treats them as unrequested and waits until they're requested again before updating them. An updateMode of lazy is only valid if the installMode is also lazy. </i></p>
+		<pre><code class="language-js">{{ '{' }}
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {{ '{' }}
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {{ '{' }}
+        "files": [ "/favicon.ico", "/index.html", "/manifest.webmanifest", "/*.css", "/*.js" ]
+      }
+    },
+    {{ '{' }}
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {{ '{' }}
+        "files": [ "/assets/**", "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)" ]
+      {{ '}' }}
+  {{ '}' }}
+  ]
+{{ '}' }}</code></pre>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="5">
+      <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              ServiceWorker Config - dataGroups defines policies for how API requests are cached
+            </mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+		<h3>Caching Strategies</h3>
+		<p><i>performance</i> - The default, optimizes for responses that are as fast as possible. If a resource exists in the cache, the cached version is used, and no network request is made. This allows for some staleness, depending on the maxAge, in exchange for better performance. This is suitable for resources that don't change often; for example, user avatar images.</p>
+		<p><i>freshness</i> - Optimizes for currency of data, preferentially fetching requested data from the network. Only if the network times out, according to timeout, does the request fall back to the cache. This is useful for resources that change frequently; for example, account balances.</p>
+		<pre><code class="language-js">{{ '{' }}
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "dataGroups": [
+    {{ '{' }}
+      "name": "users",
+      "urls": [ "/api/users/**" ],
+      "cacheConfig": {{ '{' }}
+        "strategy": "performance", "maxSize": 100, "maxAge": "5m"
+      {{ '}' }}
+    {{ '}' }},
+    {{ '{' }}
+      "name": "products",
+      "urls": [ "/api/products/**" ],
+      "cacheConfig": {{ '{' }}
+        "strategy": "freshness", "maxSize": 50, "maxAge": "15s"
+      {{ '}' }}
+    {{ '}' }}
+  ]
+{{ '}' }}</code></pre>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+

@@ -22,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AddPWAComponent } from './add-pwa/add-pwa.component';
+import { ServiceworkerConfigComponent } from './serviceworker-config/serviceworker-config.component';
+import { ServiceworkerPushComponent } from './serviceworker-push/serviceworker-push.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AddPWAComponent } from './add-pwa/add-pwa.component';
     DashboardComponent,
     ResourcesComponent,
     AddPWAComponent,
+    ServiceworkerConfigComponent,
+    ServiceworkerPushComponent,
   ],
   imports: [
     BrowserModule,

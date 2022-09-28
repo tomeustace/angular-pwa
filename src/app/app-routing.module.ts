@@ -6,6 +6,8 @@ import { AddPWAComponent } from './add-pwa/add-pwa.component';
 
 import { delay } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { ServiceworkerConfigComponent } from './serviceworker-config/serviceworker-config.component';
+import { ServiceworkerPushComponent } from './serviceworker-push/serviceworker-push.component';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +28,12 @@ const routes: Routes = [
   },
   {
     path: 'add-pwa', component: AddPWAComponent,
+  },
+  {
+    path: 'serviceworker-config', component: ServiceworkerConfigComponent,
+  },
+  {
+    path: 'serviceworker-push', component: ServiceworkerPushComponent,
   },
   {
     path: 'resources', component: ResourcesComponent

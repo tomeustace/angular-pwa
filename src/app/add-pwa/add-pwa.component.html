@@ -1,6 +1,6 @@
 <div class="grid-container">
-  <mat-grid-list cols="3" rowHeight="390px">
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+  <mat-grid-list cols="3" rowHeight="150px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
       <mat-card class="dashboard-card">
         <mat-card-content>
           <mat-card-header>
@@ -20,7 +20,8 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
+
+    <mat-grid-tile [colspan]="2" [rowspan]="5">
       <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -56,39 +57,7 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
-      <mat-card class="dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              ServiceWorker Config - dataGroups
-            </mat-card-title>
-          </mat-card-header>
-        <mat-card-content>
-		<p>dataGroups defines policies for how API requests are cached.</p>
-		<pre><code class="language-js">{{ '{' }}
-  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
-  "index": "/index.html",
-  "dataGroups": [
-    {{ '{' }}
-      "name": "users",
-      "urls": [ "/api/users/**" ],
-      "cacheConfig": {{ '{' }}
-        "strategy": "performance", "maxSize": 100, "maxAge": "5m"
-      {{ '}' }}
-    {{ '}' }},
-    {{ '{' }}
-      "name": "products",
-      "urls": [ "/api/products/**" ],
-      "cacheConfig": {{ '{' }}
-        "strategy": "freshness", "maxSize": 50, "maxAge": "15s"
-      {{ '}' }}
-    {{ '}' }}
-  ]
-{{ '}' }}</code></pre>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-grid-tile [colspan]="1" [rowspan]="4">
       <mat-card class="dashboard-card">
         <mat-card-content>
           <mat-card-header>
@@ -106,6 +75,12 @@
   "scope": "./",
   "start_url": "./",
   "icons": [...]
+  "share_target": {{ '{' }}
+    "action": "/share-target/",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {{ '{' }} "name": "file", "url": "link" {{ '}' }}
+  {{ '}' }}
 {{ '}' }}</code></pre>	
             <p>
             </p>
