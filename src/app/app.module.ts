@@ -49,10 +49,14 @@ import { ServiceworkerPushComponent } from './serviceworker-push/serviceworker-p
     MatCardModule,
     MatMenuModule,
     MatButtonModule,
+    // Custom Service Worker implemetation
+    // use importScripts(./ngsw-worker.js) in my-service-worker.js
+    // ServiceWorkerModule.register('my-service-worker.js', {
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
+      // registrationStrategy: 'registerWhenStable',
       registrationStrategy: 'registerImmediately',
     })
   ],

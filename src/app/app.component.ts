@@ -13,13 +13,13 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.getSubscription();
+    this.initSubscription();
   }
 
   // Can do a test push from devtools with below json
   // { "notification": {"title": "Angular PWAs Rock!", "body": "They sure do...."} }
 
-  getSubscription() {
+  initSubscription() {
     console.log(Notification.permission);
     if(Notification.permission === 'default') {
       Notification.requestPermission().then(() => {
